@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if(item.getItemId() == R.id.action_settings){
+            Intent niatPindahSettings = new Intent(this, SettingsActivity.class);
+            startActivity(niatPindahSettings);
             Toast.makeText(this, "setting diklik", Toast.LENGTH_LONG).show();
             return true;
         }
