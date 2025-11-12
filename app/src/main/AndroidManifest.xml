@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GettingStartedApp">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SepatuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PakayanActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
