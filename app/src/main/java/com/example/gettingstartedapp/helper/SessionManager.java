@@ -20,19 +20,26 @@ public class SessionManager {
 
     public void saveLogin(String username) {
         //TODO: no 1
+        editor.putString(KEY_USERNAME, username);
+        editor.putBoolean(KEY_IS_LOGGED_IN, true);
+        editor.apply();
     }
 
     public boolean isLoggedIn() {
         //TODO: no 1
+        prefs.getBoolean(KEY_IS_LOGGED_IN, false);
         return true;
     }
 
     public String getUsername() {
         //TODO: no 1
+        prefs.getString(KEY_USERNAME, "");
         return "";
     }
 
     public void logout() {
         //TODO: no 1
+        editor.clear();
+        editor.apply();
     }
 }

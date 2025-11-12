@@ -35,12 +35,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NoteAdapter.NoteViewHolder holder, int position) {
-
+        // TODO: no 7
+        Note note = noteList.get(position);
+        holder.bind(note, onNoteClickListener);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return noteList.size();
     }
 
     static class NoteViewHolder extends RecyclerView.ViewHolder {

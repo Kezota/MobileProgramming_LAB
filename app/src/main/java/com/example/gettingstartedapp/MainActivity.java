@@ -3,6 +3,7 @@ package com.example.gettingstartedapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -73,7 +74,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // TODO: no 2 (inflate main_menu)
-
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+//        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
@@ -86,12 +89,17 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_create_note) {
             // Pindah ke CreateNoteActivity
             // TODO: no 2
+            Intent intent = new Intent(MainActivity.this, CreateNoteActivity.class);
+            startActivity(intent);
 
             return true;
         } else if (id == R.id.action_logout) {
             // Logout. sessionManager panggil logout untuk hapus info user
             sessionManager.logout();
             // TODO: no 2
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
 
             return true;
         }
