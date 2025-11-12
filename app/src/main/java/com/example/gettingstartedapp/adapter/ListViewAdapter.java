@@ -1,4 +1,4 @@
-package com.example.gettingstartedapp;
+package com.example.gettingstartedapp.adapter;
 
 import android.content.Context;
 import android.view.View;
