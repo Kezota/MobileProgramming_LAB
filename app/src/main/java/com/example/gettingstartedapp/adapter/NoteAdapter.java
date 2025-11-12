@@ -1,5 +1,6 @@
 package com.example.gettingstartedapp.adapter;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -29,19 +30,22 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     @NonNull
     @Override
     public NoteAdapter.NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = null;
-        return null;
+        // TODO: no 3
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
+        return new NoteViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NoteAdapter.NoteViewHolder holder, int position) {
-        // TODO: no 7
+        // TODO: no 3
         Note note = noteList.get(position);
+        holder.tvNoteTitle.setText(note.getTitle());
         holder.bind(note, onNoteClickListener);
     }
 
     @Override
     public int getItemCount() {
+        // TODO no 3
         return noteList.size();
     }
 
@@ -55,6 +59,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         }
 
         public void bind(final Note note, final OnNoteClickListener listener) {
+            // TODO: no 3
             tvNoteTitle.setText(note.getTitle());
             String formattedDate = DatabaseHelper.formatTimestamp(note.getLastEditedAt());
             tvNoteLastEdited.setText("Last Edited: " + formattedDate);
