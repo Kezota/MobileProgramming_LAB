@@ -24,22 +24,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(this, ProfileActivity.class);
-        switch (item.getItemId()){
-            case R.id.nav_profile:
-                intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.nav_pakayan:
-                intent = new Intent(this, PakayanActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.nav_sepatu:
-                intent = new Intent(this, SepatuActivity.class);
-                startActivity(intent);
-                break;
+        if (item.getItemId() == R.id.nav_profile) {
+            intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.nav_pakayan) {
+            intent = new Intent(this, PakayanActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.nav_sepatu) {
+            intent = new Intent(this, SepatuActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
