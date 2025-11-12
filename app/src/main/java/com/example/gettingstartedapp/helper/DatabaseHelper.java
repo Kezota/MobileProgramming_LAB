@@ -32,13 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //TODO: no 4
-        String CREATE_NOTES_TABLE = "CREATE TABLE " + TABLE_NOTES + "("
-                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + KEY_TITLE + " TEXT,"
-                + KEY_BODY + " TEXT,"
-                + KEY_LAST_EDITED_AT + " INTEGER"
-                + ")";
-
+        String CREATE_NOTES_TABLE = "";
         db.execSQL(CREATE_NOTES_TABLE);
     }
 
@@ -50,27 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void addNote(Note note) {
         //TODO: no 4
-        SQLiteDatabase db = this.getWritableDatabase();
 
-        // cara pakai ContentValues
-//        ContentValues values = new ContentValues();
-//        values.put(KEY_TITLE, note.getTitle());
-//        values.put(KEY_BODY, note.getBody());
-//        values.put(KEY_LAST_EDITED_AT, note.getLastEditedAt());
-//
-//        db.insert(TABLE_NOTES, null, values);
-
-        // cara pakai query langsung
-        String INSERT_NOTE = "INSERT INTO " + TABLE_NOTES + " ("
-                + KEY_TITLE + ", "
-                + KEY_BODY + ", "
-                + KEY_LAST_EDITED_AT + ") VALUES ('"
-                + note.getTitle() + "', '"
-                + note.getBody() + "', "
-                + note.getLastEditedAt() + ")";
-
-        db.execSQL(INSERT_NOTE);
-        db.close();
     }
 
     public Note getNote(long id) {
@@ -95,56 +69,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Note> getAllNotes() {
         //TODO: no 4
         ArrayList<Note> noteList = new ArrayList<>();
-        String SELECT_ALL_NOTES = "SELECT * FROM " + TABLE_NOTES + " ORDER BY " + KEY_LAST_EDITED_AT + " DESC";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(SELECT_ALL_NOTES, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                Note note = new Note(
-                        cursor.getLong(cursor.getColumnIndexOrThrow(KEY_ID)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(KEY_TITLE)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(KEY_BODY)),
-                        cursor.getLong(cursor.getColumnIndexOrThrow(KEY_LAST_EDITED_AT))
-                );
-                noteList.add(note);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
 
         return noteList;
-    }
-
-    public Note getNoteByTitle(String title) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_NOTES, new String[]{KEY_ID, KEY_TITLE, KEY_BODY, KEY_LAST_EDITED_AT},
-                KEY_TITLE + "=?", new String[]{title}, null, null, null, null);
-
-        // cara pakai raw query
-//        String SELECT_NOTE_BY_TITLE = "SELECT * FROM " + TABLE_NOTES + " WHERE " + KEY_TITLE + "=?";
-//
-//        Cursor cursor = db.rawQuery(SELECT_NOTE_BY_TITLE, new String[]{title});
-//
-//        if (cursor != null)
-//            cursor.moveToFirst();
-
-        if (!cursor.moveToFirst()) {
-            cursor.close();
-            db.close();
-            return null; // note dengan title tersebut tidak ditemukan
-        }
-
-        Note note = new Note(
-                cursor.getLong(cursor.getColumnIndexOrThrow(KEY_ID)),
-                cursor.getString(cursor.getColumnIndexOrThrow(KEY_TITLE)),
-                cursor.getString(cursor.getColumnIndexOrThrow(KEY_BODY)),
-                cursor.getLong(cursor.getColumnIndexOrThrow(KEY_LAST_EDITED_AT))
-        );
-
-        cursor.close();
-        db.close();
-        return note;
     }
 
     // ini untuk bantu format timestamp

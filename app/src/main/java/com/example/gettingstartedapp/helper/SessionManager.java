@@ -14,30 +14,25 @@ public class SessionManager {
 
     public SessionManager(Context context) {
         this.context = context;
-        this.prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        this.editor = prefs.edit();
+        prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        editor = prefs.edit();
     }
 
     public void saveLogin(String username) {
-        // TODO: no 1
-        editor.putString(KEY_USERNAME, username);
-        editor.putBoolean(KEY_IS_LOGGED_IN, true);
-        editor.apply();
+        //TODO: no 1
     }
 
     public boolean isLoggedIn() {
-        // TODO: no 1
-        return prefs.getBoolean(KEY_IS_LOGGED_IN, false);
+        //TODO: no 1
+        return true;
     }
 
     public String getUsername() {
-        // TODO: no 1
-        return prefs.getString(KEY_USERNAME, null);
+        //TODO: no 1
+        return "";
     }
 
     public void logout() {
-        // TODO: no 1
-        editor.clear();
-        editor.apply();
+        //TODO: no 1
     }
 }
