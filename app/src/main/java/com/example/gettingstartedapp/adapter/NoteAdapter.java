@@ -14,32 +14,37 @@ import com.example.gettingstartedapp.model.Note;
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
+
     private List<Note> noteList;
-    private OnNoteClickListener onNoteClickListener;
+    private OnNoteClickListener listener;
 
     public interface OnNoteClickListener {
         void onNoteClick(Note note);
     }
 
-    public NoteAdapter(List<Note> noteList, OnNoteClickListener onNoteClickListener) {
+    public NoteAdapter(List<Note> noteList, OnNoteClickListener listener) {
         this.noteList = noteList;
-        this.onNoteClickListener = onNoteClickListener;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
-    public NoteAdapter.NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = null;
-        return null;
+//        TODO: no 3
+        return new NoteViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NoteAdapter.NoteViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
+        //TODO: no 3
+        Note note = null;
+        holder.bind(note, listener);
     }
 
     @Override
     public int getItemCount() {
+        // TODO: no 3
         return 0;
     }
 
