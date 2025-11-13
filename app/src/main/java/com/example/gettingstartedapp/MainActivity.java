@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         } else if (item.getItemId() == R.id.nav_sepatu) {
             intent = new Intent(this, SepatuActivity.class);
             startActivity(intent);
+        } else if (item.getItemId() == R.id.nav_pesan)  {
+
         }
         return super.onOptionsItemSelected(item);
     }

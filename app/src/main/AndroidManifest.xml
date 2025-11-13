@@ -12,17 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GettingStartedApp">
         <activity
+            android:name=".ViewPesananActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreatePesananActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".SepatuActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".PakayanActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
