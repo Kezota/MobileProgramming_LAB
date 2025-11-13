@@ -7,12 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-
-    private static final String DB_NAME = "toko";
-    public static final int DB_VERSION = 1;
-
     public DatabaseHelper(@Nullable Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+        super(context, "toko", null, 1);
     }
 
     @Override
