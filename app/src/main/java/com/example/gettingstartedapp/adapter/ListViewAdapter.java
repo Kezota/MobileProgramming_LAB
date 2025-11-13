@@ -18,7 +18,6 @@ public class ListViewAdapter extends ArrayAdapter<Product> {
         this.resource = resource;
     }
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 

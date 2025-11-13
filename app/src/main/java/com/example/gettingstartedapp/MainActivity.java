@@ -1,10 +1,17 @@
 package com.example.gettingstartedapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +20,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+    EditText personName = findViewById(R.id.personName);
+    EditText personNIM = findViewById(R.id.personNIM);
+    EditText personClass = findViewById(R.id.personClass);
+    RadioGroup personGender = findViewById(R.id.personGender);
+    Button btnSave = findViewById(R.id.saveProfile);
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,4 +61,21 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
+
+    public void savePerson(View view) {
+        String name = personName.toString();
+        String nim = personNIM.toString();
+        String kelas = personClass.toString();
+        int genderId = personGender.getCheckedRadioButtonId();
+        RadioButton genderRb = findViewById(genderId);
+        String gender = genderRb.getText().toString();
+
+        getSharedPreferences("UserData", MODE_PRIVATE).edit()
+                .putString("name", name).putString("kelas", kelas).putString("nim", nim).putString("gender", gender).apply();
+
+        Toast.makeText(this, "Data berhasil disimpan", Toast.LENGTH_LONG).show();
+    }
 }
+
+
+

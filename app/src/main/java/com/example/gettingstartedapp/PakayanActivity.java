@@ -7,18 +7,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.gettingstartedapp.adapter.ProductAdapter;
+import com.example.gettingstartedapp.model.Product;
+
+import java.util.ArrayList;
 
 public class PakayanActivity extends AppCompatActivity {
+    ArrayList<Product> products = new ArrayList<>();
+    RecyclerView rvPakaian = findViewById((R.id.rvPakaian));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pakayan);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        products.add(new Product(R.drawable.baju1, "Baju 1", "100000"));
+        products.add(new Product(R.drawable.baju2, "Baju 2", "100000"));
+        products.add(new Product(R.drawable.baju3, "Baju 3", "100000"));
+        products.add(new Product(R.drawable.baju1, "Baju 4", "100000"));
+        products.add(new Product(R.drawable.baju2, "Baju 5", "100000"));
+        products.add(new Product(R.drawable.baju3, "Baju 6", "100000"));
+        products.add(new Product(R.drawable.baju1, "Baju 7", "100000"));
+        products.add(new Product(R.drawable.baju2, "Baju 8", "100000"));
+        products.add(new Product(R.drawable.baju3, "Baju 9", "100000"));
+
+        rvPakaian.setLayoutManager(new LinearLayoutManager(this));
+        rvPakaian.setAdapter(new ProductAdapter(products));
     }
 }
