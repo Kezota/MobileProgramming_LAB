@@ -24,13 +24,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         bottomNavigationView = findViewById(R.id.bottomNav);
 
         //TODO 1A: by default tampilin DdolFragment
-
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frameLayout, new DdolFragment())
+                .commit();
 
         //TODO 1B: atur kalau tiap menu di klik, tampilkan fragment yang sesuai
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.menu_ddol) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, new DdolFragment())
+                        .commit();
+            } else if (item.getItemId() == R.id.menu_dance) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, new DanceFragment())
+                        .commit();
+            }
+
+            return true;
+        });
     }
 }

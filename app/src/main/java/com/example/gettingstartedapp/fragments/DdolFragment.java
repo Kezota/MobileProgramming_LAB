@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Request;
@@ -61,7 +62,13 @@ public class DdolFragment extends Fragment {
         });
 
         //TODO 2B: buat tiap button reveal diklik, txtPunchline muncul.
-
+        btnReveal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txtPunchline.setVisibility(View.VISIBLE);
+                btnReveal.setEnabled(false);
+            }
+        });
 
         return view;
     }
@@ -70,6 +77,28 @@ public class DdolFragment extends Fragment {
         //TODO 2A: fetch daily dose of laughter, masukkan setup dan punchline ke textview masing2
         String url = "https://official-joke-api.appspot.com/random_joke";
 
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        String type = response.getString("type");
+                        String setup = response.getString("setup");
+                        String punchline = response.getString("punchline");
+                        int id = response.getInt("id");
 
+                        txtSetup.setText(setup);
+                        txtPunchline.setText(punchline);
+                        txtPunchline.setVisibility(View.GONE);
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                error -> {
+                    Toast.makeText(getContext(), "Failed to load joke", Toast.LENGTH_SHORT).show();
+                }
+        );
+
+        requestQueue.add(request);
+        btnReveal.setEnabled(true);
     }
 }

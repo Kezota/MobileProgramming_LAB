@@ -17,7 +17,9 @@ public class PlayBabySharkService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         //TODO 3A: play baby shark dari R.raw di sini
         if (mediaPlayer == null) {
-
+            mediaPlayer = MediaPlayer.create(this, R.raw.mybaby_shark);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
         }
 
         return START_STICKY;
@@ -27,7 +29,11 @@ public class PlayBabySharkService extends Service {
     public void onDestroy() {
         super.onDestroy();
         //TODO 3B: stop media player
-
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
     @Nullable
